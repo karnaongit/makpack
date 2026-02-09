@@ -212,7 +212,7 @@ export default function Products() {
                     </ul>
                     
                     {/* Price and CTA */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    {/* <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <div>
                         <div className="text-2xl font-bold text-eco">{product.price}</div>
                         <div className="text-xs text-muted">per unit</div>
@@ -224,7 +224,7 @@ export default function Products() {
                         Details
                         <ChevronRight className="w-4 h-4" />
                       </motion.button>
-                    </div>
+                    </div> */}
                   </div>
                 </motion.div>
               </AnimatedSection>

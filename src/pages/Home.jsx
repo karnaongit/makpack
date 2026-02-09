@@ -25,7 +25,7 @@ const products = [
     nickname: 'Swiftie',
     dimensions: '155 x 90 x 215 mm',
     description: 'Compact and lightweight, perfect for quick trips or carrying essentials.',
-    image: 'https://images.unsplash.com/photo-1590820077566-af4e557c1548?crop=entropy&cs=srgb&fm=jpg&q=85&w=600',
+    image: 'public/images/products/PBS.png',
     category: 'Without Handle',
   },
   {
@@ -33,7 +33,7 @@ const products = [
     nickname: 'Balancer',
     dimensions: '180 x 120 x 245 mm',
     description: 'Balanced size for work or short getaways with moderate storage needs.',
-    image: 'https://images.unsplash.com/photo-1695245503558-5cdb37f49092?crop=entropy&cs=srgb&fm=jpg&q=85&w=600',
+    image: 'public/images/products/PBM.png',
     category: 'Without Handle',
   },
   {
@@ -41,7 +41,7 @@ const products = [
     nickname: 'Maxy',
     dimensions: '215 x 130 x 290 mm',
     description: 'Maximum storage, great for long trips or heavy-duty tasks.',
-    image: 'https://images.unsplash.com/photo-1693606780204-f70b72652fb0?crop=entropy&cs=srgb&fm=jpg&q=85&w=600',
+    image: 'public/images/products/PBL.png',
     category: 'Without Handle',
   },
   {
@@ -49,7 +49,7 @@ const products = [
     nickname: 'Trekker Mini',
     dimensions: '215 x 120 x 290 mm',
     description: 'Rugged and compact, ideal for quick outdoor adventures.',
-    image: 'https://images.unsplash.com/photo-1639037593613-fe623e381f15?crop=entropy&cs=srgb&fm=jpg&q=85&w=600',
+    image: 'public/images/products/PBHS.png',
     category: 'With Handle',
   },
   {
@@ -57,7 +57,7 @@ const products = [
     nickname: 'Trailblazer',
     dimensions: '250 x 100 x 305 mm',
     description: 'Balanced size and durability for versatile outdoor activities.',
-    image: 'https://images.pexels.com/photos/4440858/pexels-photo-4440858.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    image: 'public/images/products/PBHM.png',
     category: 'With Handle',
   },
   {
@@ -65,11 +65,10 @@ const products = [
     nickname: 'Expeditioner',
     dimensions: '280 x 150 x 280 mm',
     description: 'Heavy-duty bag built for extended adventures and tough conditions.',
-    image: 'https://images.pexels.com/photos/13431759/pexels-photo-13431759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    image: 'public/images/products/PBHL.png',
     category: 'With Handle',
   },
 ]
-
 // Stats data
 const stats = [
   { icon: Package, value: '1M+', label: 'Bags Produced Monthly', suffix: '' },
@@ -373,52 +372,53 @@ export default function Home() {
             </div>
 
             {/* Products Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProducts.map((product, index) => (
-                <AnimatedSection key={product.name} delay={index * 0.1}>
-                  <motion.div
-                    whileHover={{ y: -10 }}
-                    className="bg-paper rounded-2xl overflow-hidden card-hover"
-                  >
-                    {/* Product Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      <ParallaxImage 
-                        src={product.image} 
-                        alt={product.name}
-                        speed={0.2}
-                        className="h-full w-full"
-                      />
-                      <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium bg-eco text-white">
-                        {product.category}
-                      </span>
-                    </div>
-                    
-                    {/* Product Info */}
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h3 className="text-xl font-bold text-charcoal">{product.name}</h3>
-                          <p className="text-sm text-eco font-medium">{product.nickname}</p>
-                        </div>
-                      </div>
-                      
-                      <p className="text-muted text-sm mb-4">{product.description}</p>
-                      
-                      <div className="flex items-center gap-2 text-muted">
-                        <Ruler size={14} />
-                        <span className="text-sm">{product.dimensions}</span>
-                      </div>
-                      
-                      <button className="btn-primary w-full mt-4">
-                        <Tag size={16} />
-                        Get Quote
-                      </button>
-                    </div>
-                  </motion.div>
-                </AnimatedSection>
-              ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {filteredProducts.map((product, index) => (
+    <AnimatedSection key={product.name} delay={index * 0.1}>
+      <motion.div
+        whileHover={{ y: -10 }}
+        className="bg-paper rounded-2xl overflow-hidden card-hover"
+      >
+        {/* Product Image */}
+        <div className="relative h-64 overflow-hidden bg-white">
+          <div className="h-full w-full flex items-center justify-center p-10">
+            <ParallaxImage 
+              src={product.image} 
+              alt={product.name}
+              speed={0.2}
+              className="h-auto max-h-[90%] w-auto max-w-[60%] object-contain"
+            />
+          </div>
+          <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium bg-eco text-white">
+            {product.category}
+          </span>
+        </div>
+        
+        {/* Product Info */}
+        <div className="p-6">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <h3 className="text-xl font-bold text-charcoal">{product.name}</h3>
+              <p className="text-sm text-eco font-medium">{product.nickname}</p>
             </div>
-
+          </div>
+          
+          <p className="text-muted text-sm mb-4">{product.description}</p>
+          
+          <div className="flex items-center gap-2 text-muted">
+            <Ruler size={14} />
+            <span className="text-sm">{product.dimensions}</span>
+          </div>
+          
+          {/* <button className="btn-primary w-full mt-4">
+            <Tag size={16} />
+            Get Quote
+          </button> */}
+        </div>
+      </motion.div>
+    </AnimatedSection>
+  ))}
+</div>
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-muted mb-6">
