@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/* Your Brand Colors */
+@theme {
+  --color-paper: #F9F7F2;  /* --makpack-bg */
+  --color-kraft: #D98C45;   /* --makpack-primary */
+  --color-eco: #7CB342;     /* --makpack-accent */
+  --color-leaf: #1A3C34;    /* --makpack-secondary */
+  --color-charcoal: #1C1917; /* --makpack-text */
+  --color-muted: #57534E;   /* --makpack-text-secondary */
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Poppins', 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.8s ease-out;
+  --animate-slide-up: slideUp 0.6s ease-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-bounce: bounce 2s infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-12px) rotate(2deg); }
+    75% { transform: translateY(8px) rotate(-1deg); }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  
+  body {
+    @apply bg-paper text-charcoal font-sans overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+/* Component Classes */
+@layer components {
+  .btn-primary {
+    @apply bg-leaf text-white px-6 py-3 rounded-full font-semibold 
+           hover:bg-kraft transform hover:-translate-y-1 
+           transition-all duration-300 shadow-md hover:shadow-lg
+           flex items-center justify-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-eco text-eco px-6 py-3 rounded-full font-semibold 
+           hover:bg-eco hover:text-white transition-all duration-300
+           flex items-center justify-center gap-2;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl;
+  }
+  
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24 py-16 md:py-24;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-kraft to-eco bg-clip-text text-transparent;
+  }
+  
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-paper;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-leaf rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-kraft;
+}
+
+/* Selection */
+::selection {
+  @apply bg-kraft text-white;
+}
+
+/* Grain texture overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
